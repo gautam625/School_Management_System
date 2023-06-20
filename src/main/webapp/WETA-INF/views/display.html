@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Update Student</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>  
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+         <H1 class="navbar-brand">Student Management System</H1> 
+         
+          <div  class="mx-auto" >
+          <strong  th:class="${alart1}==null?'':'alert alert-success'" th:text="${alart1}" ></strong>
+            <a th:href="@{/students/edit/{admissionNo}(admissionNo=${s.admissionNo})}"  class = "btn btn-primary ">Update</a>
+		    <a href="/" class = "btn btn-danger " role="button">Exit</a>
+		  </div>  
+   </nav>
+   
+ <section style="background-color: #eee;">
+  <div class="container py-1">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="card mb-1">
+          <div class="card-body text-center">
+               <img th:src="@{'/students/display/'+${p.admissionNo}}"  alt="Image" class="rounded-circle img-fluid" style="width: 150px;"> 
+               <h5 class="my-0" th:text="${s.name}"></h5>
+               <p class="text-muted mb-0">Class : <span th:text="${s.standard}"></span></p>
+               <p class="text-muted mb-0">DOB : <span th:text="${p.dob}"></span></p>
+          </div>
+        </div>
+        <div class="card mb-4 mb-lg-0">
+          <div class="card-body p-1">
+              <h6 class="text-center">Student Marks Details</h6>    
+               <table class="table user-view-table m-1">
+                     <tr >
+                       <th >Examination</th>
+                       <th >Marks</th>
+                       <th >Percentage</th>
+                     </tr> 
+                   <tbody>
+                      <tr>
+                        <td>Quarterly</td>
+                        <td th:text="${m.quarterly}" ></td>
+                        <td><span th:text="${m.quarterly}>0?${m.quarterly/5}:${m.quarterly}" ></span> %</td>
+                     </tr>
+                     <tr> 
+                        <td>Half-Yearly</td>
+                        <td th:text="${m.halfYearly}" ></td>
+                        <td><span th:text="${m.halfYearly}>0?${m.halfYearly/5}:${m.halfYearly}"></span> %</td>
+                     </tr>
+                     <tr>
+                        <td>Annual</td>
+                        <td th:text="${m.annual}" ></td>
+                        <td><span th:text="${m.annual}>0?${m.annual/5}:${m.annual}"></span> %</td>
+                     </tr>
+                     <tr>
+                        <th>Final Result</th>
+                        <th th:text="${m.halfYearly+m.annual+m.quarterly}" ></th>
+                        <th><span th:text="${m.halfYearly+m.annual+m.quarterly}>0? ${m.halfYearly+m.annual+m.quarterly}/15:${m.halfYearly+m.annual+m.quarterly}"></span> %</th>
+                     </tr>
+                  </tbody>
+               </table>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <div class="card mb-1">
+          <div class="card-body">
+            <div class="row"><div class="col-sm-3"><p class="mb-0">Admission.No</p></div>
+              <div class="col-sm-9"><p class="text-muted mb-0" th:text="${s.admissionNo}"></p></div>
+            </div>
+            <hr>
+            <div class="row"><div class="col-sm-3"><p class="mb-0">Name</p></div>
+              <div class="col-sm-9"><p class="text-muted mb-0" th:text="${s.name}"></p></div>
+            </div>
+            <hr>
+            <div class="row"><div class="col-sm-3"><p class="mb-0">Email Id</p></div>
+              <div class="col-sm-9"><p class="text-muted mb-0"  th:text="${p.email}"></p></div>
+            </div>
+            <hr>
+            <div class="row"><div class="col-sm-3"><p class="mb-0">Address</p></div>
+             <div class="col-sm-9"><p class="text-muted mb-0" th:text="${s.place}"></p></div>
+            </div>       
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card mb-4 mb-md-0">
+              <div class="card-body">
+                <h6 class="text-center">Student Fee Details</h6>    
+               <table class="table user-view-table m-1">
+                     <tr >
+                       <th >Fee</th>
+                       <th >Amount</th>
+                       <th >Status</th>
+                     </tr> 
+                   <tbody>
+                      <tr>
+                        <td>Annual </td>
+                        <td th:text="${f.admissionFee}"></td>
+                        <td th:text="${f.admissionFee}>1?'Paid':'Unpaid'"></td>
+                     </tr>
+                     <tr>
+                        <td>I Quater</td>
+                        <td th:text="${f.quater1Fee}"></td>
+                         <td th:text="${f.admissionFee}>1?'Paid':'Unpaid'"></td>
+                     </tr>
+                     <tr>
+                        <td>II Quater</td>
+                        <td th:text="${f.quater2Fee}"></td>
+                         <td th:text="${f.quater2Fee}>1?'Paid':'Unpaid'"></td>
+                     </tr>
+                     <tr>
+                        <td>III Quater</td>
+                        <td th:text="${f.quater3Fee}"></td>
+                         <td th:text="${f.quater3Fee}>1?'Paid':'Unpaid'"></td>
+                     </tr>
+                  </tbody>
+               </table>
+               
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card mb-4 mb-md-0">
+              <div class="card-body">
+              <h6 class="text-center">Student Personal Details</h6> 
+               <table class="table user-view-table m-1">
+                  <tbody>
+                    <tr>
+                      <td>Father's Name</td>
+                      <td th:text="${p.guardianName}"></td>
+                    </tr>
+                    <tr>
+                      <td>Admission Date</td>
+                      <td th:text="${p.date}"></td>
+                    </tr>
+                     <tr>
+                      <td>Aadhar No</td>
+                      <td th:text="${p.aadhar}"></td>
+                    </tr>
+                    <tr>
+                      <td>Mobile No</td>
+                      <td th:text="${s.mobile}"></td>
+                    </tr>
+                    <tr>
+                      <td>Gender</td>
+                      <td th:text="${p.gender}"></td>
+                    </tr>
+                  </tbody>
+                </table>                  
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>
+</html>

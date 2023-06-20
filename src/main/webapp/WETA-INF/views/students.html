@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>School Management</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <H1 class="navbar-brand" >School Management System</H1>
+    </nav>
+    <div class ="container">                  
+		<div class = "text-center">
+		     <h1>Students List</h1><br>
+		     
+	          <strong  th:class="${alart1}==null?'':'alert alert-success'" th:text="${alart1}" ></strong>
+	          <strong th:class="${alart2}==null?'':'alert alert-danger'"  th:text="${alart2}" ></strong>
+	          
+		</div><br>
+	 	<div class = "row">
+			  <div  class = "col-lg-3"> <a href="/students/form" class = "btn btn-primary"> Add Student</a> </div>
+			  <div  class = "col-lg-3"> <a href="/students/input" class = "btn btn-primary"> Display Student</a> </div>
+		 	  <div  class = "col-lg-3"> <a href="/" class = "btn btn-primary">Refresh</a> </div>
+			  <div  class = "col-lg-3">
+			      <form action="/student/search">
+			          <div class="input-group">
+                         <input type="text" class="form-control rounded" placeholder="Search Admission.No" name="admissionNo" aria-label="Search" aria-describedby="search-addon" />
+                         <button type="submit" class="btn btn-outline-primary"><i class="bi bi-search"></i></button>
+                     </div>
+			     </form>    
+		     </div>
+		</div><br>
+    
+		<table class = "table table-striped table-bordered justify-content-center text-center">
+			<thead class = "table-dark">
+				<tr>
+					<th> Admission.No</th>
+					<th> Student Name</th>
+					<th> Student Class </th>
+					<th> Student Address </th>
+					<th> Student Mobile.No </th>
+					<th>Photo</th>
+					<th> Actions </th>
+				</tr>
+			</thead>	
+			<tbody>
+				   <tr th:each="s:${list}">
+					   <td th:text="${s.admissionNo}" />
+					   <td th:text="${s.name}" />  
+					   <td th:text="${s.standard}" />  
+					   <td th:text="${s.place}" />  
+					   <td th:text="${s.mobile}" /> 
+					   <td ><img th:src="@{'/students/display/'+${s.admissionNo}}"  class="img-fluid" style="width: 75px;" alt="Photo" ></td>
+					   <td >
+					       <a th:href="@{/students/edit/{admissionNo}(admissionNo=${s.admissionNo})}" class = "btn btn-primary">Update</a>
+					       <a th:href="@{/students/delete/{admissionNo}(admissionNo=${s.admissionNo})}" class = "btn btn-danger">Delete</a>
+					   </td>
+				 </tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

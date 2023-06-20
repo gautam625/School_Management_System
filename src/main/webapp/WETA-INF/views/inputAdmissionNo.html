@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Input Admission Number</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>  
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+         <H1 class="navbar-brand">Student Management System</H1>    
+   </nav> <br><br><br>
+    
+	<div class = "container">
+			<div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card "> 	
+				     <h1>Enter Admission Number</h1><br>
+			         
+			         <strong th:class="${admissionNumber}==null?'':'alert alert-danger'"  th:text="${admissionNumber}" ></strong>
+				
+				     <form action="/students/display">
+						     <label> Student Admission Number </label>
+							 <input type = "text" name = "admissionNo"  class = "form-control" /><br>
+							 <button type="submit" class = "btn btn-primary">Submit</button>
+							 <a href="/" class = "btn btn-danger" role="button">Exit</a>		
+					 </form>	
+		 </div>
+	 </div>
+</body>
+</html>

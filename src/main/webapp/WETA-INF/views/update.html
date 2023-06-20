@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Update Student</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body> 
+<form action="/students/update" method="POST"  enctype="multipart/form-data"> 
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+              <H1 class="navbar-brand">Student Management System</H1> 
+              <div class="mx-auto">
+                  <button type="submit" class = "btn btn-primary ">Submit</button>
+		          <a href="/" class = "btn btn-danger" role="button">Exit</a>
+		      </div> 
+   </nav>
+   
+ <section style="background-color: #eee;">
+  
+  <div class="container py-1"   >
+    <div class="row">
+    
+      <div class="col-lg-4">  
+
+        <div class="card mb-1" >
+          <div class="card-body text-center">
+               <div>
+                     <img th:src="@{'/students/display/'+${p.admissionNo}}" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+                     <input type="file" name="file"  id="customFile" >
+               </div>
+               <h5 class="my-1" th:text="${s.name}"></h5>  
+               <div class="form-group row">
+                   <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">Class</label>
+                      <div class="col-sm-8">
+                             <select class="form-control form-control-sm" name = "standard"  >
+                                  <option value="Nursery"    th:selected="${s.standard == 'Nursery'}">Nursery</option>
+                                  <option value="LKG"        th:selected="${s.standard == 'LKG'}">L K G</option>
+                                  <option value="UKG"        th:selected="${s.standard == 'UKG'}">U K G</option>
+                                  <option value="Class I"    th:selected="${s.standard == 'Class I'}">Class 1</option>
+                                  <option value="Class II"   th:selected="${s.standard == 'Class II'}">Class 2</option>
+                                  <option value="Class III"  th:selected="${s.standard == 'Class III'}">Class 3</option>
+                                  <option value="Class IV"   th:selected="${s.standard == 'Class IV'}">Class 4</option>
+                                  <option value="Class V"    th:selected="${s.standard == 'Class V'}">Class 5</option>
+                                  <option value="Class VI"   th:selected="${s.standard == 'Class VI'}">Class 6</option>   
+                                  <option value="Class VII"  th:selected="${s.standard == 'Class VII'}">Class 7</option>   
+                                  <option value="Class VIII" th:selected="${s.standard == 'Class VIII'}">Class 8</option>      
+                            </select>
+                     </div>         
+               </div>
+               <div class="form-group row">
+                   <label for="colFormLabelSm" class="col-sm-3 col-form-label col-form-label-sm">DOB</label>
+                   <div class="col-sm-8"><input type="date" class="form-control form-control-sm" name="dob" th:value="${p.dob}"></div>
+              </div>
+          </div>
+        </div>
+        
+        <div class="card mb-4 mb-lg-0">
+          <div class="card-body p-1">
+              <h6 class="text-center">Student Marks Details</h6>    
+               <table class="table user-view-table m-1">
+                     <tr >
+                       <th >Examination</th>
+                       <th >Marks</th>
+                       <th >Percentage</th>
+                     </tr> 
+                   <tbody>
+                      <tr>
+                        <td>Quarterly</td>
+                        <td ><input type="text"  class="form-control form-control-sm" name="quarterly" th:value="${m.quarterly}"></td>
+                        <td><span th:text="${m.quarterly}" ></span> %</td>
+                     </tr>
+                     <tr>
+                        <td>Half-Yearly</td>
+                        <td ><input type="text"  class="form-control form-control-sm"  name="halfYearly" th:value="${m.halfYearly}"></td>
+                        <td><span th:text="${m.halfYearly}"></span> %</td>
+                     </tr>
+                     <tr>
+                        <td>Annual</td>
+                        <td> <input type="text"  class="form-control form-control-sm" name="annual" th:value="${m.annual}"></td>
+                        <td><span th:text="${m.annual}"></span> %</td>
+                     </tr>
+                     <tr>
+                        <th>Final Result</th>
+                        <th th:text="${m.halfYearly}" ></th>
+                        <th><span th:text="${m.quarterly}"></span> %</th>
+                     </tr>
+                  </tbody>
+               </table>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-lg-8">
+        <div class="card mb-1">
+          <div class="card-body">
+            <div class="row"><div class="col-sm-3"><p class="mb-0">Admission.No</p></div>
+              <div class="col-sm-5"><input  class="form-control form-control-sm" name="admissionNo" th:value="${s.admissionNo}" /></div>
+            </div>
+            <hr>
+            <div class="row"><div class="col-sm-3"><p class="mb-0">Name</p></div>
+               <div class="col-sm-5">
+                    <input type = "text" name = "name" class = "form-control" th:value="${s.name}" >
+               </div>	
+            </div>
+            <hr>
+            <div class="row"><div class="col-sm-3"><p class="mb-0">Email Id</p></div>
+              <div class="col-sm-5">
+                    <input class="form-control form-control-sm" name="email" th:value="${p.email}"></div>
+            </div>
+            <hr>
+            <div class="row"><div class="col-sm-3"><p class="mb-0">Address</p></div>
+             <div class="col-sm-5">
+                  <input class="form-control form-control-sm" name="place" th:value="${s.place}"></div>
+            </div>       
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card mb-4">
+              <div class="card-body">
+                <h6 class="text-center">Student Fee Details</h6>    
+               <table class="table user-view-table m-1">
+                     <tr >
+                       <th >Fee</th>
+                       <th >Amount</th>
+                       <th >Status</th>
+                     </tr> 
+                   <tbody>
+                      <tr>
+                        <td>Annual</td>
+                        <td><input type="text"  class="form-control form-control-sm" name="admissionFee" th:value="${f.admissionFee}"></td>
+                        <td>Paid</td>
+                     </tr>
+                     <tr>
+                        <td>1Quater</td>
+                        <td><input type="text"  class="form-control form-control-sm" name="quater1Fee" th:value="${f.quater1Fee}"></td>
+                        <td>Paid</td>
+                     </tr>
+                     <tr>
+                        <td>2Quater</td>
+                        <td><input type="text"  class="form-control form-control-sm" name="quater2Fee" th:value="${f.quater2Fee}"></td>
+                        <td>Paid</td>
+                     </tr>
+                     <tr>
+                        <td>3Quater</td>
+                        <td><input type="text"  class="form-control form-control-sm" name="quater3Fee" th:value="${f.quater3Fee}"></td>
+                        <td>Paid</td>
+                     </tr>
+                  </tbody>
+               </table>
+               
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card mb-4 mb-md-0">
+              <div class="card-body">
+              <h6 class="text-center">Student Personal Details</h6> 
+               <table class="table user-view-table m-1">
+                  <tbody>
+                    <tr>
+                      <td>Father's Name</td>
+                      <td><input type="text"  class="form-control form-control-sm" name="guardianName" th:value="${p.guardianName}"></td>
+                    </tr>
+                    <tr>
+                      <td>AdmissionDate</td>
+                      <td><input type="text"  class="form-control form-control-sm" name="date" th:value="${p.date}" ></td>
+                    </tr>
+                     <tr>
+                      <td>Aadhar No</td>
+                      <td><input type="text"  class="form-control form-control-sm" name="aadhar" th:value="${p.aadhar}"></td>
+                    </tr>
+                    <tr>
+                      <td>Mobile No</td>
+                      <td><input type="text"  class="form-control form-control-sm" name="mobile"  th:value="${s.mobile}"></td>
+                    </tr>
+                    <tr>
+                        <td>Gender</td>
+                        <td>
+                            <select class="form-control form-control-sm"  name="gender" >
+                                  <option value="Mail"   th:selected="${p.gender == 'Mail'}">Mail</option>
+                                  <option value="Femail" th:selected="${p.gender == 'Femail'}">Female</option>
+                                  <option value="Other"  th:selected="${p.gender == 'Other'}">Other</option>     
+                            </select>
+                        </td>
+                    </tr>   
+                  </tbody>
+                </table>                  
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+   
+ </section>
+ </form>
+</body>
+</html>
+</html>
